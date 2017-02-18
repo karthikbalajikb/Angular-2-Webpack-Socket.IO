@@ -1,17 +1,27 @@
 <main>
-  <md-input-container>
-  <input md-input placeholder="Favorite food" value="Sushi">
-</md-input-container>
-  <h1>Hello from Angular App with Webpack</h1>
-  <p-chart #chart type="pie" [data]="data"></p-chart>
-<button type="button" pButton (click)="update(chart)"></button>
-<md-grid-list cols="4" rowHeight="100px">
-  <md-grid-tile
-      *ngFor="let tile of tiles"
-      [colspan]="tile.cols"
-      [rowspan]="tile.rows"
-      [style.background]="tile.color">
-    {{tile.text}}
-  </md-grid-tile>
-</md-grid-list>
+  <h1>DevOps Dashboard</h1>
+
+  <md-grid-list cols="4" rowHeight="100px">
+    <md-grid-tile colspan="2" rowspan="5" [style.background]="'pink'">
+      <p-chart type="bar" [data]="data"></p-chart>
+    </md-grid-tile>
+    <md-grid-tile colspan="2" rowspan="3" [style.background]="'green'">
+      <md-list>
+        <h3 md-subheader>Latest builds</h3>
+        <!--<md-list-item *ngFor="let Builddata of fullBuildData">
+          <h4 md-line>{{Builddata.buildId}}</h4>
+          <p md-line> {{Builddata.startTime}}</p>
+          <h4 md-line> {{Builddata.buildStatus}} </h4>
+        </md-list-item>-->
+        <p-dataTable [value]="fullBuildData">
+          <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header"></p-column>
+      </p-dataTable>
+        <md-divider></md-divider>
+        <h3 md-subheader>Total builds</h3>
+        <md-list-item >
+          <h4 md-line>{{buildDataCount}}</h4>
+        </md-list-item>
+      </md-list>
+    </md-grid-tile>
+  </md-grid-list>
 </main>
